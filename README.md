@@ -1,1 +1,3 @@
 # Mini4WD_with_RPi
+自作のPCBとRPiのを繋ぐためのもの．
+回路図とパーツとPythonで利用するためのライブラリと
