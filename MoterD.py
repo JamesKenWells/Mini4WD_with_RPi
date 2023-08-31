@@ -2,22 +2,23 @@
 import RPi.GPIO as GPIO
 import time
 
-#ピン番号の定義 pin_definision
+#pin_definision ピン番号の定義
 LRG = 22
 MODE = 36
 STBY = 38
 IN1 = 32
 IN2 = 40
-#PWM制御周波数 PWM_frequency
+#PWM_frequency PWM制御周波数
 Hz = 100
 
-GPIO.setmode(GPIO.BOARD)
-for l in [LRG, MODE, STBY, IN1, IN2]:
-  GPIO.setup(l, GPIO.OUT)
-  GPIO.output(l, GPIO.LOW)
-fowardp = GPIO.PWM(IN1, Hz)
-reversep = GPIO.PWM(IN2, Hz)
-forcedp = GPIO.PWM(STBY, Hz)
+def initialize():
+  GPIO.setmode(GPIO.BOARD)
+  for l in [LRG, MODE, STBY, IN1, IN2]:
+    GPIO.setup(l, GPIO.OUT)
+    GPIO.output(l, GPIO.LOW)
+  fowardp = GPIO.PWM(IN1, Hz)
+  reversep = GPIO.PWM(IN2, Hz)
+  forcedp = GPIO.PWM(STBY, Hz)
 
 def cleanup():
   GPIO.cleanup()
@@ -75,22 +76,3 @@ def powerOFF():
 
 def powerON():
   GPIO.output(STBY, GPIO.HIGH)
-
-
-#--------------------
-
-
-print('start')
-
-fpower()
-time.sleep(2)
-powerOFF()
-
-fpower()
-time.sleep(2)
-brake()
-
-print('end')
-
-ISD_reset()
-cleanup()
