@@ -76,3 +76,6 @@ def powerOFF():
 
 def powerON():
   GPIO.output(STBY, GPIO.HIGH)
+
+def clean():
+  GPIO.cleanup()
